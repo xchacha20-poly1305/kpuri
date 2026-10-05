@@ -1,0 +1,54 @@
+name: Publish
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+
+  publish:
+    needs: test
+    # Apple targets only build on macOS.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Resolve version
+        id: version
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            version="${GITHUB_REF_NAME#v}"
+            if [[ "$version" == *-SNAPSHOT ]]; then
+              echo "::error::Release tag $GITHUB_REF_NAME must not be a snapshot version"
+              exit 1
+            fi
+            echo "args=-Pversion=$version" >> "$GITHUB_OUTPUT"
+            echo "task=publishAndReleaseToMavenCentral" >> "$GITHUB_OUTPUT"
+          else
+            echo "task=publishToMavenCentral" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish
+        run: ./gradlew ${{ steps.version.outputs.task }} ${{ steps.version.outputs.args }}
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: 0CDBE971
