@@ -1,0 +1,745 @@
+[
+  {
+    "index": 1,
+    "input": "http://example\t.\norg",
+    "reason": "Controls are rejected rather than stripped.",
+    "expected": null
+  },
+  {
+    "index": 2,
+    "input": "http://user:pass@foo:21/bar;par?b#c",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 3,
+    "input": "https://test:@test",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "https://test:@test"
+  },
+  {
+    "index": 4,
+    "input": "https://:@test",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "https://:@test"
+  },
+  {
+    "index": 5,
+    "input": "non-special://test:@test/x",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "non-special://test:@test/x"
+  },
+  {
+    "index": 6,
+    "input": "non-special://:@test/x",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "non-special://:@test/x"
+  },
+  {
+    "index": 7,
+    "input": "http:foo.com",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "http:foo.com"
+  },
+  {
+    "index": 10,
+    "input": "a:\t foo.com",
+    "reason": "Controls are rejected rather than stripped.",
+    "expected": null
+  },
+  {
+    "index": 13,
+    "input": "http://f:/c",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "http://f:/c"
+  },
+  {
+    "index": 14,
+    "input": "http://f:0/c",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 15,
+    "input": "http://f:00000000000000/c",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "http://f:00000000000000/c"
+  },
+  {
+    "index": 16,
+    "input": "http://f:00000000000000000000080/c",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "http://f:00000000000000000000080/c"
+  },
+  {
+    "index": 17,
+    "input": "http://f:b/c",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 18,
+    "input": "http://f: /c",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 19,
+    "input": "http://f:\n/c",
+    "reason": "Controls are rejected rather than stripped.",
+    "expected": null
+  },
+  {
+    "index": 20,
+    "input": "http://f:fifty-two/c",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 21,
+    "input": "http://f:999999/c",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 22,
+    "input": "non-special://f:999999/c",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 23,
+    "input": "http://f: 21 / b ? d # e ",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 24,
+    "input": "",
+    "reason": "Parse references independently without base resolution.",
+    "expected": ""
+  },
+  {
+    "index": 33,
+    "input": "#",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "#"
+  },
+  {
+    "index": 34,
+    "input": "#/",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "#/"
+  },
+  {
+    "index": 36,
+    "input": "#;?",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "#;?"
+  },
+  {
+    "index": 37,
+    "input": "?",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "?"
+  },
+  {
+    "index": 38,
+    "input": "/",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "/"
+  },
+  {
+    "index": 40,
+    "input": "/:23",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "/:23"
+  },
+  {
+    "index": 45,
+    "input": "foo://",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 46,
+    "input": "http://a:b@c:29/d",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 47,
+    "input": "http://é@é",
+    "expected": "http://%C3%A9@%C3%A9",
+    "reason": "Percent encoding instead of IDNA; preserve empty path."
+  },
+  {
+    "index": 48,
+    "input": "http://é@example.com",
+    "expected": "http://%C3%A9@example.com",
+    "reason": "Preserve empty path."
+  },
+  {
+    "index": 49,
+    "input": "http::@c:29",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "http::@c:29"
+  },
+  {
+    "index": 52,
+    "input": "http://foo.com:b@d/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 58,
+    "input": "foo:/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 59,
+    "input": "foo:/bar.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 60,
+    "input": "foo://///////",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 61,
+    "input": "foo://///////bar.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 62,
+    "input": "foo:////://///",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 63,
+    "input": "c:/foo",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 64,
+    "input": "//foo/bar",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "//foo/bar"
+  },
+  {
+    "index": 65,
+    "input": "http://foo/path;a??e#f#g",
+    "expected": "http://foo/path;a??e#f%23g",
+    "reason": "Encode extra fragment delimiter."
+  },
+  {
+    "index": 66,
+    "input": "http://foo/abcd?efgh?ijkl",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 67,
+    "input": "http://foo/abcd#foo?bar",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 70,
+    "input": "http://[1::2]:3:4",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 71,
+    "input": "http://2001::1",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 72,
+    "input": "http://2001::1]",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 73,
+    "input": "http://2001::1]:80",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 74,
+    "input": "http://[2001::1]",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "http://[2001::1]"
+  },
+  {
+    "index": 75,
+    "input": "http://[::127.0.0.1]",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "http://[::127.0.0.1]"
+  },
+  {
+    "index": 76,
+    "input": "http://[::127.0.0.1.]",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 77,
+    "input": "http://[0:0:0:0:0:0:13.1.68.3]",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "http://[0:0:0:0:0:0:13.1.68.3]"
+  },
+  {
+    "index": 78,
+    "input": "http://[2001::1]:80",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "http://[2001::1]:80"
+  },
+  {
+    "index": 79,
+    "input": "http:/example.com/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "http:/example.com/"
+  },
+  {
+    "index": 80,
+    "input": "http:/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "http:/"
+  },
+  {
+    "index": 81,
+    "input": "ftp:/example.com/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "ftp:/example.com/"
+  },
+  {
+    "index": 82,
+    "input": "https:/example.com/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "https:/example.com/"
+  },
+  {
+    "index": 83,
+    "input": "madeupscheme:/example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 84,
+    "input": "file:/example.com/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "file:/example.com/"
+  },
+  {
+    "index": 85,
+    "input": "file://example:1/",
+    "reason": "File URLs use ordinary URI authority rules.",
+    "expected": "file://example:1/"
+  },
+  {
+    "index": 86,
+    "input": "file://example:test/",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 88,
+    "input": "file://[example]/",
+    "reason": "Shared invalid port or IP literal rejection.",
+    "expected": null
+  },
+  {
+    "index": 89,
+    "input": "ftps:/example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 90,
+    "input": "gopher:/example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 91,
+    "input": "ws:/example.com/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "ws:/example.com/"
+  },
+  {
+    "index": 92,
+    "input": "wss:/example.com/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "wss:/example.com/"
+  },
+  {
+    "index": 93,
+    "input": "data:/example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 94,
+    "input": "javascript:/example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 95,
+    "input": "mailto:/example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 96,
+    "input": "http:example.com/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "http:example.com/"
+  },
+  {
+    "index": 97,
+    "input": "ftp:example.com/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "ftp:example.com/"
+  },
+  {
+    "index": 98,
+    "input": "https:example.com/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "https:example.com/"
+  },
+  {
+    "index": 99,
+    "input": "madeupscheme:example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 100,
+    "input": "ftps:example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 101,
+    "input": "gopher:example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 102,
+    "input": "ws:example.com/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "ws:example.com/"
+  },
+  {
+    "index": 103,
+    "input": "wss:example.com/",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "wss:example.com/"
+  },
+  {
+    "index": 104,
+    "input": "data:example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 105,
+    "input": "javascript:example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 106,
+    "input": "mailto:example.com/",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 107,
+    "input": "/a/b/c",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "/a/b/c"
+  },
+  {
+    "index": 108,
+    "input": "/a/ /c",
+    "expected": "/a/%20/c",
+    "reason": "Encode relative path without resolving base."
+  },
+  {
+    "index": 109,
+    "input": "/a%2fc",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "/a%2fc"
+  },
+  {
+    "index": 110,
+    "input": "/a/%2f/c",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "/a/%2f/c"
+  },
+  {
+    "index": 111,
+    "input": "#β",
+    "expected": "#%CE%B2",
+    "reason": "Encode fragment without resolving base."
+  },
+  {
+    "index": 112,
+    "input": "data:text/html,test#test",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 113,
+    "input": "tel:1234567890",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 115,
+    "input": "ssh://example.com/foo/bar.git",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 122,
+    "input": "//server/file",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "//server/file"
+  },
+  {
+    "index": 125,
+    "input": "file:///foo/bar.txt",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 126,
+    "input": "file:///home/me",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 127,
+    "input": "//",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "//"
+  },
+  {
+    "index": 128,
+    "input": "///",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "///"
+  },
+  {
+    "index": 129,
+    "input": "///test",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "///test"
+  },
+  {
+    "index": 130,
+    "input": "file://test",
+    "reason": "Preserve credentials, empty paths, ports and IP literal spelling.",
+    "expected": "file://test"
+  },
+  {
+    "index": 131,
+    "input": "file://localhost",
+    "reason": "File URLs use ordinary URI authority rules.",
+    "expected": "file://localhost"
+  },
+  {
+    "index": 132,
+    "input": "file://localhost/",
+    "reason": "File URLs use ordinary URI authority rules.",
+    "expected": "file://localhost/"
+  },
+  {
+    "index": 133,
+    "input": "file://localhost/test",
+    "reason": "File URLs use ordinary URI authority rules.",
+    "expected": "file://localhost/test"
+  },
+  {
+    "index": 134,
+    "input": "test",
+    "reason": "Parse references independently without base resolution.",
+    "expected": "test"
+  },
+  {
+    "index": 135,
+    "input": "file:test",
+    "reason": "No special-scheme authority inference or base resolution.",
+    "expected": "file:test"
+  },
+  {
+    "index": 142,
+    "input": "http://example.com/././foo",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/././foo"
+  },
+  {
+    "index": 143,
+    "input": "http://example.com/./.foo",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/./.foo"
+  },
+  {
+    "index": 144,
+    "input": "http://example.com/foo/.",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/."
+  },
+  {
+    "index": 145,
+    "input": "http://example.com/foo/./",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/./"
+  },
+  {
+    "index": 146,
+    "input": "http://example.com/foo/bar/..",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/bar/.."
+  },
+  {
+    "index": 147,
+    "input": "http://example.com/foo/bar/../",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/bar/../"
+  },
+  {
+    "index": 148,
+    "input": "http://example.com/foo/..bar",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/..bar"
+  },
+  {
+    "index": 149,
+    "input": "http://example.com/foo/bar/../ton",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/bar/../ton"
+  },
+  {
+    "index": 150,
+    "input": "http://example.com/foo/bar/../ton/../../a",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/bar/../ton/../../a"
+  },
+  {
+    "index": 151,
+    "input": "http://example.com/foo/../../..",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/../../.."
+  },
+  {
+    "index": 152,
+    "input": "http://example.com/foo/../../../ton",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/../../../ton"
+  },
+  {
+    "index": 153,
+    "input": "http://example.com/foo/%2e",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/%2e"
+  },
+  {
+    "index": 155,
+    "input": "http://example.com/foo/%2e./%2e%2e/.%2e/%2e.bar",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/%2e./%2e%2e/.%2e/%2e.bar"
+  },
+  {
+    "index": 156,
+    "input": "http://example.com////../..",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com////../.."
+  },
+  {
+    "index": 157,
+    "input": "http://example.com/foo/bar//../..",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/bar//../.."
+  },
+  {
+    "index": 158,
+    "input": "http://example.com/foo/bar//..",
+    "reason": "Preserve dot segments including encoded dots.",
+    "expected": "http://example.com/foo/bar//.."
+  },
+  {
+    "index": 159,
+    "input": "http://example.com/foo",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 160,
+    "input": "http://example.com/%20foo",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 161,
+    "input": "http://example.com/foo%",
+    "expected": "http://example.com/foo%25",
+    "reason": "Encode malformed percent escape."
+  },
+  {
+    "index": 162,
+    "input": "http://example.com/foo%2",
+    "expected": "http://example.com/foo%252",
+    "reason": "Encode malformed percent escape."
+  },
+  {
+    "index": 163,
+    "input": "http://example.com/foo%2zbar",
+    "expected": "http://example.com/foo%252zbar",
+    "reason": "Encode malformed percent escape."
+  },
+  {
+    "index": 165,
+    "input": "http://example.com/foo%41%7a",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 167,
+    "input": "http://example.com/foo%00%51",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 168,
+    "input": "http://example.com/(%28:%3A%29)",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 169,
+    "input": "http://example.com/%3A%3a%3C%3c",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 170,
+    "input": "http://example.com/foo\tbar",
+    "reason": "Controls are rejected rather than stripped.",
+    "expected": null
+  },
+  {
+    "index": 172,
+    "input": "http://example.com/%7Ffp3%3Eju%3Dduvgw%3Dd",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 173,
+    "input": "http://example.com/@asdf%40",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 174,
+    "input": "http://example.com/你好你好",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 175,
+    "input": "http://example.com/‥/foo",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 176,
+    "input": "http://example.com/﻿/foo",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 177,
+    "input": "http://example.com/‮/foo/‭/bar",
+    "reason": "Shared serialization with WPT."
+  },
+  {
+    "index": 179,
+    "input": "http://www.google.com/foo?bar=baz#",
+    "reason": "Shared serialization with WPT."
+  }
+]
