@@ -1,0 +1,79 @@
+name: Documentation
+
+on:
+  pull_request:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Generate Dokka HTML
+        run: ./gradlew :kpuri:dokkaGenerate
+
+      - name: Verify the documentation entry point
+        run: test -s kpuri/build/dokka/html/index.html
+
+      - name: Upload Dokka HTML
+        if: github.repository == 'xchacha20-poly1305/kpuri' && github.ref == 'refs/heads/dev' && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v7
+        with:
+          name: dokka-html
+          path: kpuri/build/dokka/html
+          if-no-files-found: error
+
+  publish:
+    if: github.repository == 'xchacha20-poly1305/kpuri' && github.ref == 'refs/heads/dev' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: dokka-html
+          path: ${{ runner.temp }}/kpuri-html
+
+      - name: Update the gh-pages branch
+        run: |
+          site="$RUNNER_TEMP/kpuri-html"
+          test -s "$site/index.html"
+          touch "$site/.nojekyll"
+          rsync -a --delete --exclude='/.git' "$site/" gh-pages/
+
+          git -C gh-pages add --all
+          if ! git -C gh-pages diff --cached --quiet; then
+            git -C gh-pages -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m "Publish Dokka documentation for $GITHUB_SHA"
+            git -C gh-pages push origin HEAD:refs/heads/gh-pages
+          fi
+
+      # Pushes made with GITHUB_TOKEN do not trigger a Pages build.
+      - name: Request a Pages build from gh-pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds" --jq '{status, commit}'

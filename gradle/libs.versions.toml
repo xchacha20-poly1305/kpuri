@@ -1,7 +1,9 @@
 [versions]
+dokka = "2.3.0"
 kotlin = "2.4.20"
 maven-publish = "0.37.0"
 
 [plugins]
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }

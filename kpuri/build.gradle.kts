@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.maven.publish)
+    alias(libs.plugins.dokka)
 }
 
 repositories {
@@ -39,6 +40,15 @@ kotlin {
         commonTest.dependencies {
             implementation(kotlin("test"))
         }
+    }
+}
+
+dokka {
+    dokkaPublications.named("html") {
+        suppressInheritedMembers.set(true)
+    }
+    dokkaSourceSets.named("commonMain") {
+        includes.from(rootProject.layout.projectDirectory.file("docs/kpuri.md"))
     }
 }
 

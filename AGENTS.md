@@ -10,6 +10,7 @@ kpuri is a Kotlin Multiplatform RFC 3986 URI library (single module `:kpuri`, pa
 ./gradlew :kpuri:jvmTest --tests '*UrlParserTest.someTestName'
 ./gradlew allTests                           # every target this host can build (what CI runs)
 ./gradlew :kpuri:jsNodeTest :kpuri:wasmJsNodeTest :kpuri:linuxX64Test
+./gradlew :kpuri:dokkaGenerate               # HTML in kpuri/build/dokka/html/
 ```
 
 - Browser test tasks are disabled; JS and Wasm tests run under Node.js only.
@@ -21,9 +22,13 @@ kpuri is a Kotlin Multiplatform RFC 3986 URI library (single module `:kpuri`, pa
 
 `.github/workflows/test.yml` runs `allTests` on macOS for every branch push and pull request, except those that change only `.md` files. `.github/workflows/publish.yml` calls it first, then publishes to Maven Central; it runs only on a `v*` tag push or a manual dispatch. A manual dispatch on a branch publishes the `version` in `gradle.properties` (a `-SNAPSHOT`). A `v<version>` tag publishes and releases that version via `-Pversion=`; snapshot tags are rejected.
 
+`.github/workflows/docs.yml` validates Dokka on pull requests. On `dev`, it publishes the generated HTML to `gh-pages`, the publishing source for GitHub Pages.
+
 ## Architecture
 
 Public API: `Url` (immutable value), `UrlBuilder` (obtained only via `buildUrl(scheme) { ... }` or `Url.newBuilder()`), `UrlOptions`, `UrlSyntaxException`.
+
+Document every new public API declaration in the same change. Its KDoc must include `@since` with the library version that introduces it.
 
 **One validation path for parsing and building.** `UrlParser` only splits the input on RFC 3986 Appendix B boundaries and rejects what cannot be split (control characters, unclosed `[`, junk after an IP-literal). It then hands raw component slices to `assembleUrl` (`UrlAssembly.kt`). `UrlBuilder.build()` hands its already-encoded components to the same `assembleUrl`. That function owns all structural checks (scheme, host, port, authority/path rules) and normalizations (empty username implied by a password, leading `/` on a path with an authority). Errors come back as `UrlComponentError` with a component-relative index; the parser converts them to `UrlSyntaxException` with an index into the input, the builder to `IllegalArgumentException`. New structural rules belong in `assembleUrl`, not in the parser or builder.
 

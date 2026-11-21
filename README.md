@@ -2,12 +2,19 @@
 
 A Kotlin Multiplatform library for parsing and building URIs according to [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986).
 
+**The public API is currently unstable. Future releases may introduce breaking changes.**
+
 - **Lossless.** Parsing a valid URI and calling `toString()` gives back the same text. Components are stored percent-encoded and decoded when read.
 - **Absent is not empty.** `http://h/p` has no query (`null`); `http://h/p?` has an empty one (`""`).
 - **One set of rules.** The parser and the builder share the same structural checks, so a `Url` that one accepts the other accepts too.
 - **Pure common code.** No platform-specific sources and no dependencies beyond the Kotlin standard library.
 
 Supported targets: JVM (Java 8+), JS and Wasm/JS, Linux x64/arm64, Windows x64 (mingw), macOS arm64, iOS arm64 and the iOS simulator on arm64.
+
+## Documentation
+
+The [Dokka documentation](https://xchacha20-poly1305.github.io/kpuri/) includes a quickstart and the API reference for the `dev` branch.
+To generate it locally, run `./gradlew :kpuri:dokkaGenerate` and serve `kpuri/build/dokka/html/` with a local web server.
 
 ## Installation
 
