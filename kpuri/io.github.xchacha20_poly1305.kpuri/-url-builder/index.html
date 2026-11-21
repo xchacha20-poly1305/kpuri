@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>UrlBuilder</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
+                    kpuri
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+0.1.0        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true"
+                        data-filter=":kpuri/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kpuri/commonMain"
+                                       data-filter=":kpuri/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    kpuri
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="kpuri::io.github.xchacha20_poly1305.kpuri/UrlBuilder///PointingToDeclaration//796817184">
+  <div class="breadcrumbs"><a href="../../../index.html">kpuri</a><span class="delimiter">/</span><a href="../index.html">io.github.xchacha20_poly1305.kpuri</a><span class="delimiter">/</span><span class="current">UrlBuilder</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Url</span><wbr></wbr><span><span>Builder</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">UrlBuilder</a></div><p class="paragraph">Mutable builder for a <a href="../-url/index.html">Url</a>. Obtain one from <a href="../build-url.html">buildUrl</a> or <a href="../-url/new-builder.html">Url.newBuilder</a>; there is no public empty constructor.</p><p class="paragraph"><a href="username.html">username</a>, <a href="password.html">password</a>, <a href="host.html">host</a>, <a href="path.html">path</a>, and <a href="fragment.html">fragment</a> accept decoded text. These setters percent-encode disallowed characters, including every <code class="lang-kotlin">%</code>. Setters with the <code class="lang-kotlin">encoded</code> prefix preserve valid <code class="lang-kotlin">%XX</code> escapes and encode disallowed characters. Getters return the corresponding decoded or encoded text.</p><p class="paragraph"><a href="build.html">build</a> then runs the shared structural checks. A null <a href="scheme.html">scheme</a> is allowed only when this builder came from <a href="../-url/new-builder.html">Url.newBuilder</a> on a relative reference (<a href="../-url/scheme.html">Url.scheme</a> was null). <a href="../build-url.html">buildUrl</a> never allows it. Normalization that inserts an empty username or a leading <code class="lang-kotlin">/</code> is applied to the <a href="../-url/index.html">Url</a> <a href="build.html">build</a> returns, not written back here. <a href="scheme.html">scheme</a> is lowercased as soon as it is set.</p><span class="kdoc-tag"><h4 class="">Since</h4><p class="paragraph">0.1.0</p></span></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="214957451%2FProperties%2F796817184" anchor-label="encodedFragment" id="214957451%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="encoded-fragment.html"><span>encoded</span><wbr></wbr><span><span>Fragment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="214957451%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="encoded-fragment.html">encodedFragment</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Percent-encoded fragment without <code class="lang-kotlin">#</code>; null when there is no fragment.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2138858445%2FProperties%2F796817184" anchor-label="encodedHost" id="-2138858445%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="encoded-host.html"><span>encoded</span><wbr></wbr><span><span>Host</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2138858445%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="encoded-host.html">encodedHost</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Percent-encoded host, without brackets; null when there is no authority. Brackets are stripped like <a href="host.html">host</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="964132768%2FProperties%2F796817184" anchor-label="encodedPassword" id="964132768%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="encoded-password.html"><span>encoded</span><wbr></wbr><span><span>Password</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="964132768%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="encoded-password.html">encodedPassword</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Percent-encoded password; null when the userinfo has no <code class="lang-kotlin">:</code>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1028291498%2FProperties%2F796817184" anchor-label="encodedPath" id="-1028291498%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="encoded-path.html"><span>encoded</span><wbr></wbr><span><span>Path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1028291498%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="encoded-path.html">encodedPath</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Percent-encoded path. May be empty.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1480842903%2FProperties%2F796817184" anchor-label="encodedQuery" id="1480842903%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="encoded-query.html"><span>encoded</span><wbr></wbr><span><span>Query</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1480842903%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="encoded-query.html">encodedQuery</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Percent-encoded query without <code class="lang-kotlin">?</code>, or null when the URL has no query. Assigned text is encoded with the query rules (<code class="lang-kotlin">keepEscapes = true</code>) and then split on <code class="lang-kotlin">&amp;</code>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1622251973%2FProperties%2F796817184" anchor-label="encodedUsername" id="1622251973%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="encoded-username.html"><span>encoded</span><wbr></wbr><span><span>Username</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1622251973%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="encoded-username.html">encodedUsername</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Percent-encoded userinfo name; null when there is no userinfo.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-871550111%2FProperties%2F796817184" anchor-label="fragment" id="-871550111%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fragment.html"><span><span>fragment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-871550111%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="fragment.html">fragment</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Decoded fragment without <code class="lang-kotlin">#</code>; null when there is no fragment.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-314495735%2FProperties%2F796817184" anchor-label="host" id="-314495735%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="host.html"><span><span>host</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-314495735%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="host.html">host</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Decoded host, without brackets; null when there is no authority.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-122374794%2FProperties%2F796817184" anchor-label="password" id="-122374794%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="password.html"><span><span>password</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-122374794%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="password.html">password</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Decoded password; null when the userinfo has no <code class="lang-kotlin">:</code>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="796071212%2FProperties%2F796817184" anchor-label="path" id="796071212%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="path.html"><span><span>path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="796071212%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="path.html">path</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Decoded path. <code class="lang-kotlin">%2F</code> becomes <code class="lang-kotlin">/</code>. A non-empty path that has an authority and does not start with <code class="lang-kotlin">/</code> gains that <code class="lang-kotlin">/</code> in <a href="build.html">build</a>, not here.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-26263472%2FProperties%2F796817184" anchor-label="port" id="-26263472%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="port.html"><span><span>port</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-26263472%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="port.html">port</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Verbatim port text. Null means no port; <code class="lang-kotlin">&quot;&quot;</code> means a trailing colon, as in <code class="lang-kotlin">host:</code>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-696236372%2FProperties%2F796817184" anchor-label="scheme" id="-696236372%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scheme.html"><span><span>scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-696236372%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="scheme.html">scheme</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Lowercase scheme, or null when this builder is allowed to produce a relative reference.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="535744411%2FProperties%2F796817184" anchor-label="username" id="535744411%2FProperties%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="username.html"><span><span>username</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="535744411%2FProperties%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="username.html">username</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Decoded userinfo name; null when there is no userinfo. <code class="lang-kotlin">:</code> is encoded.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-904582211%2FFunctions%2F796817184" anchor-label="addEncodedQueryParameter" id="-904582211%2FFunctions%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-encoded-query-parameter.html"><span>add</span><wbr></wbr><span>Encoded</span><wbr></wbr><span>Query</span><wbr></wbr><span><span>Parameter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-904582211%2FFunctions%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="add-encoded-query-parameter.html"><span class="token function">addEncodedQueryParameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">encodedName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">encodedValue<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">UrlBuilder</a></div><div class="brief "><p class="paragraph">Like <a href="add-query-parameter.html">addQueryParameter</a>, but <a href="add-encoded-query-parameter.html">encodedName</a> and <a href="add-encoded-query-parameter.html">encodedValue</a> may already contain <code class="lang-kotlin">%XX</code>. <code class="lang-kotlin">&amp;</code>, <code class="lang-kotlin">=</code>, <code class="lang-kotlin">+</code>, and <code class="lang-kotlin">#</code> are still encoded, so a value cannot break the query apart.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="469076512%2FFunctions%2F796817184" anchor-label="addPathSegment" id="469076512%2FFunctions%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-path-segment.html"><span>add</span><wbr></wbr><span>Path</span><wbr></wbr><span><span>Segment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="469076512%2FFunctions%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="add-path-segment.html"><span class="token function">addPathSegment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">segment<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">UrlBuilder</a></div><div class="brief "><p class="paragraph">Appends <a href="add-path-segment.html">segment</a> as one path segment. Inside the segment, <code class="lang-kotlin">/</code> becomes <code class="lang-kotlin">%2F</code> and <code class="lang-kotlin">%</code> becomes <code class="lang-kotlin">%25</code>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1689513983%2FFunctions%2F796817184" anchor-label="addPathSegments" id="-1689513983%2FFunctions%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-path-segments.html"><span>add</span><wbr></wbr><span>Path</span><wbr></wbr><span><span>Segments</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1689513983%2FFunctions%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="add-path-segments.html"><span class="token function">addPathSegments</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">segments<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">UrlBuilder</a></div><div class="brief "><p class="paragraph">Appends every <code class="lang-kotlin">/</code>-separated piece of <a href="add-path-segments.html">segments</a>. Each piece is encoded like <a href="add-path-segment.html">addPathSegment</a>, and the slashes that separated the pieces are kept, including a leading, trailing, or doubled slash: <code class="lang-kotlin">&quot;&quot;</code> + <code class="lang-kotlin">&quot;a/b&quot;</code> is <code class="lang-kotlin">&quot;a/b&quot;</code>, <code class="lang-kotlin">&quot;&quot;</code> + <code class="lang-kotlin">&quot;/a/b&quot;</code> is <code class="lang-kotlin">&quot;/a/b&quot;</code>, <code class="lang-kotlin">&quot;&quot;</code> + <code class="lang-kotlin">&quot;a/b/&quot;</code> is <code class="lang-kotlin">&quot;a/b/&quot;</code>, and <code class="lang-kotlin">&quot;&quot;</code> + <code class="lang-kotlin">&quot;a//b&quot;</code> is <code class="lang-kotlin">&quot;a//b&quot;</code>. That text is then joined to the current path the same way as <a href="add-path-segment.html">addPathSegment</a>, so <code class="lang-kotlin">&quot;/a&quot;</code> + <code class="lang-kotlin">&quot;b&quot;</code> and <code class="lang-kotlin">&quot;/a/&quot;</code> + <code class="lang-kotlin">&quot;/b&quot;</code> are both <code class="lang-kotlin">&quot;/a/b&quot;</code>. An empty string adds nothing. Unlike <a href="add-path-segment.html">addPathSegment</a>, an empty piece is a real slash boundary (<code class="lang-kotlin">&quot;a//b&quot;</code> stays doubled) rather than only a trailing-slash request.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1330683295%2FFunctions%2F796817184" anchor-label="addQueryParameter" id="-1330683295%2FFunctions%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-query-parameter.html"><span>add</span><wbr></wbr><span>Query</span><wbr></wbr><span><span>Parameter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1330683295%2FFunctions%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="add-query-parameter.html"><span class="token function">addQueryParameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">UrlBuilder</a></div><div class="brief "><p class="paragraph">Appends a query parameter and percent-encodes characters such as <code class="lang-kotlin">&amp;</code>, <code class="lang-kotlin">=</code>, <code class="lang-kotlin">+</code>, and <code class="lang-kotlin">#</code>. Parameters already in the query are left byte for byte, including separator pieces such as the empty piece in <code class="lang-kotlin">a=1&amp;&amp;b=2</code>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1113308773%2FFunctions%2F796817184" anchor-label="build" id="-1113308773%2FFunctions%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build.html"><span><span>build</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1113308773%2FFunctions%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="build.html"><span class="token function">build</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-url/index.html">Url</a></div><div class="brief "><p class="paragraph">Checks the components and returns a <a href="../-url/index.html">Url</a>, or throws <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-illegal-argument-exception/index.html">IllegalArgumentException</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="349208728%2FFunctions%2F796817184" anchor-label="removeQueryParameter" id="349208728%2FFunctions%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remove-query-parameter.html"><span>remove</span><wbr></wbr><span>Query</span><wbr></wbr><span><span>Parameter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="349208728%2FFunctions%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="remove-query-parameter.html"><span class="token function">removeQueryParameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">UrlBuilder</a></div><div class="brief "><p class="paragraph">Removes every parameter whose decoded name is <a href="remove-query-parameter.html">name</a>. When that leaves no real parameter, only separator pieces such as <code class="lang-kotlin">&amp;&amp;</code> or nothing, <a href="encoded-query.html">encodedQuery</a> becomes null so the URL has no <code class="lang-kotlin">?</code>. A query that is already only separators is left unchanged when <a href="remove-query-parameter.html">name</a> is absent. Parameters that stay keep their original text.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1755808512%2FFunctions%2F796817184" anchor-label="setQueryParameter" id="1755808512%2FFunctions%2F796817184" data-filterable-set=":kpuri/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kpuri/commonMain" data-filterable-set=":kpuri/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-query-parameter.html"><span>set</span><wbr></wbr><span>Query</span><wbr></wbr><span><span>Parameter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1755808512%2FFunctions%2F796817184"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kpuri/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-query-parameter.html"><span class="token function">setQueryParameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">UrlBuilder</a></div><div class="brief "><p class="paragraph">Sets the decoded parameter <a href="set-query-parameter.html">name</a> to <a href="set-query-parameter.html">value</a>, encoded like <a href="add-query-parameter.html">addQueryParameter</a>. The first existing match is replaced and the later matches are removed; names compare the way <a href="../-url/query-parameter.html">Url.queryParameter</a> does, with <code class="lang-kotlin">+</code> read as a space. When <a href="set-query-parameter.html">name</a> is absent, the parameter is appended. Every piece that is not replaced keeps its original encoding.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
